@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => setItems(data));
     return () => {
       console.log("cleanup");
     }
@@ -20,6 +20,16 @@ function App() {
   return (
     <div className="App">
       <h1>Load More / Pagination</h1>
+      <div className="container">
+        {items.map(item => (
+          <div className="card">
+            <div className="id">
+              <span>{item.id}</span>
+            </div>
+            <p>{item.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
